@@ -131,6 +131,34 @@ def criar_perfil():
 
     print("\nPerfil criado com sucesso!\n")
 
+def sugerir_carreira(usuario, carreiras):
+    habilidades = usuario["habilidades"]
+    opcoes = []
+
+    # VARRE TODAS AS CATEGORIAS
+    for categoria, areas in carreiras.items():
+        # VARRE TODAS AS CARREIRAS DENTRO DA CATEGORIA
+        for carreira, skills in areas.items():
+            # Verifica se há pelo menos 1 habilidade em comum
+            for h in habilidades:
+                if h in skills:
+                    opcoes.append(carreira)
+                    break
+
+    if not opcoes:
+        print("\nNenhuma carreira compatível encontrada.")
+        return None
+
+    print("\nCarreiras compatíveis com você:\n")
+    for i, c in enumerate(opcoes, 1):
+        print(f"{i}. {c}")
+
+    escolha = int(input("\nEscolha sua carreira pelo número: "))
+    carreira_escolhida = opcoes[escolha - 1]
+
+    print(f"\nCarreira escolhida: {carreira_escolhida}\n")
+
+    return carreira_escolhida
 
 
 #MENU
@@ -151,7 +179,8 @@ while True:
         criar_perfil()
 
     elif opcao == "2":
-        carreira = sugerir_carreira()
+
+        carreira = sugerir_carreira(usuario, carreiras)
 
     elif opcao == "3":
         if 'carreira' in locals():
