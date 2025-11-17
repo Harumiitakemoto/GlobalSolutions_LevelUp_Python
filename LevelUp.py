@@ -118,3 +118,15 @@ mentores = [
     {"nome": "Renata Pereira", "area": "Assistente Social", "categoria": "Humanas e Educação",
      "experiencia": "Pleno", "disponibilidade": "Tarde"}
 ]
+
+# MENU PRINCIPAL
+while True:
+    print("=== MentorIA – Assistente de Carreira ===")
+    print("1. Criar Perfil")
+    print("2. Sugestão de Carreira")
+    print("3. Gerar Plano de Ação")
+    print("4. Conectar com Mentor")
+    print("5. Ver Progresso")
+    print("6. Cadastrar Mentor Voluntário")
+    print("7. Sair")
+
