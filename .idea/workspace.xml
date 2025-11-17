@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="feat: criada lista de tarefas">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="feat: criado função gerar plano de carreira com opção de lista de tarefas">
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +39,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.LevelUp.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -133,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763391049222</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: criado função gerar plano de carreira com opção de lista de tarefas">
+      <option name="closed" value="true" />
+      <created>1763391390938</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763391390938</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -143,6 +152,7 @@
     <MESSAGE value="feat: criada a função criar perfil" />
     <MESSAGE value="feat: criada a função sugerir carreira e fix codigo menu" />
     <MESSAGE value="feat: criada lista de tarefas" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: criada lista de tarefas" />
+    <MESSAGE value="feat: criado função gerar plano de carreira com opção de lista de tarefas" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: criado função gerar plano de carreira com opção de lista de tarefas" />
   </component>
 </project>
