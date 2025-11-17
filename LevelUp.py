@@ -75,3 +75,46 @@ carreiras = {
         "Mentor Educacional": ["Orientação", "Didática", "Acompanhamento"],
     }
 }
+mentores = [
+    # Tecnologia
+    {"nome": "Mateus Oliveira", "area": "Desenvolvedor ", "categoria": "Tecnologia",
+     "experiencia": "Sênior", "disponibilidade": "Manhã"},
+    {"nome": "Camila Silva", "area": "Analista de Dados", "categoria": "Tecnologia",
+     "experiencia": "Sênior", "disponibilidade": "Manhã"},
+    {"nome": "Pedro Costa", "area": "Cybersegurança", "categoria": "Tecnologia",
+     "experiencia": "Pleno", "disponibilidade": "Noite"},
+
+    # Marketing e Comunicação
+    {"nome": "Mariana Akemi", "area": "Analista de Marketing", "categoria": "Marketing e Comunicação",
+     "experiencia": "Sênior", "disponibilidade": "Noite"},
+    {"nome": "Sophia Ramos", "area": "Designer Gráfico", "categoria": "Marketing e Comunicação",
+     "experiencia": "Sênior", "disponibilidade": "Manhã"},
+
+    # Negócios
+    {"nome": "Carlos Almeida", "area": "Administrador", "categoria": "Gestão e Negócios",
+     "experiencia": "Sênior", "disponibilidade": "Manhã"},
+    {"nome": "Vanessa Bianco", "area": "Gerente de Projetos", "categoria": "Gestão e Negócios",
+     "experiencia": "Sênior", "disponibilidade": "Tarde"},
+
+    # Saúde
+    {"nome": "Dra. Alice Mendes", "area": "Médico", "categoria": "Saúde",
+     "experiencia": "Especialista", "disponibilidade": "Tarde"},
+    {"nome": "Dr. Mario Antunes", "area": "Psicólogo", "categoria": "Saúde",
+     "experiencia": "Sênior", "disponibilidade": "Noite"},
+
+    # Engenharias
+    {"nome": "Bruno Ferreira", "area": "Engenheiro Civil", "categoria": "Engenharias e Exatas",
+     "experiencia": "Sênior", "disponibilidade": "Manhã"},
+    {"nome": "Eduardo Toshio", "area": "Engenheiro Mecânico", "categoria": "Engenharias e Exatas",
+     "experiencia": "Pleno", "disponibilidade": "Noite"},
+    {"nome": "Jefferson Moreira", "area": "Engenheiro de Produção", "categoria": "Engenharias e Exatas",
+     "experiencia": "Sênior", "disponibilidade": "Tarde"},
+
+    # Humanas e Educação
+    {"nome": "Dra. Patrícia Kobayashi", "area": "Advogado", "categoria": "Humanas e Educação",
+     "experiencia": "Sênior", "disponibilidade": "Noite"},
+    {"nome": "Gisele Alves", "area": "Professor", "categoria": "Humanas e Educação",
+     "experiencia": "Pleno", "disponibilidade": "Manhã"},
+    {"nome": "Renata Pereira", "area": "Assistente Social", "categoria": "Humanas e Educação",
+     "experiencia": "Pleno", "disponibilidade": "Tarde"}
+]
