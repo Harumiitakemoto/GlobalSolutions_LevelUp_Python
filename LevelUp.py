@@ -192,6 +192,79 @@ def sugerir_carreira(usuario, carreiras):
 
     return carreira_escolhida
 
+def gerar_plano(carreira):
+    # Descobre a categoria da carreira
+    categoria_area = None
+    for categoria, lista in carreiras.items():
+        if carreira in lista:
+            categoria_area = categoria
+            break
+
+    if categoria_area not in tarefas_por_area:
+        print("\nNenhum plano de ação disponível para essa carreira.")
+        return
+
+    # Lista de tarefas concluídas
+    feitas = []
+    tarefas_ativas = sortear_tarefas(categoria_area, feitas)
+
+    print(f"\n📘 Plano de ação iniciado para carreira: {carreira}\n")
+
+    while True:
+        print("\n=== PLANO DE AÇÃO ===")
+        print("1. Ver tarefas atuais")
+        print("2. Concluir tarefa")
+        print("3. Liberar novas tarefas")
+        print("4. Voltar ao menu principal")
+
+        opc = input("Escolha: ")
+
+        # 1 — Ver tarefas
+        if opc == "1":
+            print("\nTarefas atuais:\n")
+            for t in tarefas_ativas:
+                status = "[✔]" if t in feitas else "[ ]"
+                print(f"{status} {t}")
+
+        # 2 — Concluir tarefas
+        elif opc == "2":
+            print("\nQual tarefa deseja marcar como concluída?\n")
+            for i, t in enumerate(tarefas_ativas, 1):
+                print(f"{i}. {t}")
+
+            escolha = int(input("Escolha: ")) - 1
+
+            if escolha < 0 or escolha >= len(tarefas_ativas):
+                print("Opção inválida.")
+                continue
+
+            tarefa = tarefas_ativas[escolha]
+
+            if tarefa in feitas:
+                print("\nEssa tarefa já foi concluída!")
+            else:
+                concluir_tarefa(feitas, tarefa)
+                usuario["pontos"] += 10
+
+        # 3 — Liberar novas tarefas
+        elif opc == "3":
+            novas = sortear_tarefas(categoria_area, feitas)
+
+            if not novas:
+                print("\nVocê concluiu todas as tarefas dessa área!")
+            else:
+                print("\nNovas tarefas adicionadas!")
+                tarefas_ativas = novas
+
+        # 4 — Voltar
+        elif opc == "4":
+            print("\nVoltando ao menu principal...\n")
+            break
+
+        else:
+            print("Opção inválida!")
+
+
 
 #MENU
 
