@@ -118,6 +118,38 @@ mentores = [
      "experiencia": "Pleno", "disponibilidade": "Tarde"}
 ]
 
+# LISTAS DE TAREFAS
+tarefas_por_area = {
+    "Tecnologia": [
+        "Aprender lógica de programação",
+        "Estudar Python básico",
+        "Criar um pequeno projeto em Python",
+        "Aprender Git e GitHub",
+        "Estudar SQL",
+        "Fazer um curso básico de Front-end",
+        "Criar um portfólio simples"
+    ],
+    "Saúde": [
+        "Revisar anatomia básica",
+        "Fazer curso de primeiros socorros",
+        "Estudar biossegurança",
+        "Aprender leitura de exames simples",
+        "Escolher área de especialização"
+    ],
+    "Direito": [
+        "Estudar princípios do Direito Constitucional",
+        "Aprender técnicas de pesquisa jurídica",
+        "Ler processos reais",
+        "Fazer resumo de jurisprudências"
+    ],
+    "Engenharia": [
+        "Estudar matemática e física básica",
+        "Aprender conceitos de desenho técnico",
+        "Fazer curso de AutoCAD",
+        "Entender fundamentos de gestão de projetos"
+    ]
+}
+
 # FUNÇÕES
 
 def criar_perfil():
