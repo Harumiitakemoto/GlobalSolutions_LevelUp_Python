@@ -6,6 +6,8 @@ usuario = {
     "pontos": 0
 }
 
+# DICIONÁRIO COMPLETO DE CARREIRAS
+
 carreiras = {
     "Tecnologia": {
         "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
@@ -75,8 +77,10 @@ carreiras = {
         "Mentor Educacional": ["Orientação", "Didática", "Acompanhamento"],
     }
 }
+
+# MENTORES
+
 mentores = [
-    # Tecnologia
     {"nome": "Mateus Oliveira", "area": "Desenvolvedor ", "categoria": "Tecnologia",
      "experiencia": "Sênior", "disponibilidade": "Manhã"},
     {"nome": "Camila Silva", "area": "Analista de Dados", "categoria": "Tecnologia",
@@ -84,25 +88,21 @@ mentores = [
     {"nome": "Pedro Costa", "area": "Cybersegurança", "categoria": "Tecnologia",
      "experiencia": "Pleno", "disponibilidade": "Noite"},
 
-    # Marketing e Comunicação
     {"nome": "Mariana Akemi", "area": "Analista de Marketing", "categoria": "Marketing e Comunicação",
      "experiencia": "Sênior", "disponibilidade": "Noite"},
     {"nome": "Sophia Ramos", "area": "Designer Gráfico", "categoria": "Marketing e Comunicação",
      "experiencia": "Sênior", "disponibilidade": "Manhã"},
 
-    # Negócios
     {"nome": "Carlos Almeida", "area": "Administrador", "categoria": "Gestão e Negócios",
      "experiencia": "Sênior", "disponibilidade": "Manhã"},
     {"nome": "Vanessa Bianco", "area": "Gerente de Projetos", "categoria": "Gestão e Negócios",
      "experiencia": "Sênior", "disponibilidade": "Tarde"},
 
-    # Saúde
     {"nome": "Dra. Alice Mendes", "area": "Médico", "categoria": "Saúde",
      "experiencia": "Especialista", "disponibilidade": "Tarde"},
     {"nome": "Dr. Mario Antunes", "area": "Psicólogo", "categoria": "Saúde",
      "experiencia": "Sênior", "disponibilidade": "Noite"},
 
-    # Engenharias
     {"nome": "Bruno Ferreira", "area": "Engenheiro Civil", "categoria": "Engenharias e Exatas",
      "experiencia": "Sênior", "disponibilidade": "Manhã"},
     {"nome": "Eduardo Toshio", "area": "Engenheiro Mecânico", "categoria": "Engenharias e Exatas",
@@ -110,7 +110,6 @@ mentores = [
     {"nome": "Jefferson Moreira", "area": "Engenheiro de Produção", "categoria": "Engenharias e Exatas",
      "experiencia": "Sênior", "disponibilidade": "Tarde"},
 
-    # Humanas e Educação
     {"nome": "Dra. Patrícia Kobayashi", "area": "Advogado", "categoria": "Humanas e Educação",
      "experiencia": "Sênior", "disponibilidade": "Noite"},
     {"nome": "Gisele Alves", "area": "Professor", "categoria": "Humanas e Educação",
@@ -119,9 +118,25 @@ mentores = [
      "experiencia": "Pleno", "disponibilidade": "Tarde"}
 ]
 
-# MENU PRINCIPAL
+# FUNÇÕES
+
+def criar_perfil():
+    usuario["nome"] = input("Digite seu nome: ")
+
+    habilidades_brutas = input("Liste suas habilidades separadas por vírgula: ").split(",")
+    usuario["habilidades"] = [h.strip().title() for h in habilidades_brutas]
+
+    usuario["interesses"] = [i.strip().title() for i in input("Interesses: ").split(",")]
+    usuario["estilo"] = input("Como você se define? (analítico, criativo, comunicador): ")
+
+    print("\nPerfil criado com sucesso!\n")
+
+
+
+#MENU
+
 while True:
-    print("=== MentorIA – Assistente de Carreira ===")
+    print("=== Level Up – Assistente de Carreira ===")
     print("1. Criar Perfil")
     print("2. Sugestão de Carreira")
     print("3. Gerar Plano de Ação")
@@ -130,3 +145,35 @@ while True:
     print("6. Cadastrar Mentor Voluntário")
     print("7. Sair")
 
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        criar_perfil()
+
+    elif opcao == "2":
+        carreira = sugerir_carreira()
+
+    elif opcao == "3":
+        if 'carreira' in locals():
+            gerar_plano(carreira)
+        else:
+            print("Sugira uma carreira primeiro.\n")
+
+    elif opcao == "4":
+        if 'carreira' in locals():
+            conectar_mentor(carreira)
+        else:
+            print("Sugira uma carreira primeiro.\n")
+
+    elif opcao == "5":
+        ver_progresso()
+
+    elif opcao == "6":
+        cadastrar_mentor(mentores, carreiras)
+
+    elif opcao == "7":
+        print("Saindo...")
+        break
+
+    else:
+        print("Opção inválida!\n")
