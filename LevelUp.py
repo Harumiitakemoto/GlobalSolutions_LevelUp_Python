@@ -154,7 +154,7 @@ def conectar_mentor():
     if not(encontrados):
         print("\nNenhum mentor disponível para esta área\n")
         return
-    for mento in encontrados:
+    for m in encontrados:
         print(f"- {m['nome']} ({m['area']})")
 
     print()
@@ -169,7 +169,6 @@ def cadastrar_mentor():
 
 
 # MENU
-
 
 while True:
     print("=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
@@ -189,8 +188,13 @@ while True:
         sugerir_carreira()
     elif opcao == "3":
         gerar_plano()
-
-    elif opc == "6":
+    elif opcao == "4":
+        ver_progresso()
+    elif opcao == "5":
+        conectar_mentor()
+    elif opcao == "6":
+        cadastrar_mentor()
+    elif opc == "7":
         print("Saindo...")
         break
     else:
