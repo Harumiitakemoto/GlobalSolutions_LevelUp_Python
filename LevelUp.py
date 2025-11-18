@@ -2,23 +2,18 @@ import random
 
 
 # DADOS DO SISTEMA
-
-
 usuario = {
     "nome": "",
     "habilidades": [],
     "interesses": [],
     "estilo": ""
 }
-
 carreira_escolhida = None
 plano = []
 
 # DICIONÁRIO COMPLETO DE CARREIRAS
-
-
 carreiras = {
-    "Tecnologia": {
+
         "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
         "Desenvolvedor Frontend": ["HTML", "CSS", "JavaScript", "Design Responsivo"],
         "Desenvolvedor Fullstack": ["HTML", "CSS", "JavaScript", "Python", "APIs"],
@@ -32,19 +27,21 @@ carreiras = {
         "Técnico de Informática": ["Hardware", "Manutenção", "Redes"],
         "Suporte Técnico": ["Atendimento", "Sistemas", "Resolução de Problemas"],
     }
-}
 
 # MENTORES
 
 mentores = [
-    {"nome": "Mateus Oliveira", "area": "Desenvolvedor ", "categoria": "Tecnologia"},
-    {"nome": "Camila Silva", "area": "Analista de Dados", "categoria": "Tecnologia"},
-    {"nome": "Pedro Costa", "area": "Cybersegurança", "categoria": "Tecnologia",},
-
+    {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend"},
+    {"nome": "Rogerio Nakata", "area": "Desenvolvedor Backend"},
+    {"nome": "Camila Silva", "area": "Analista de Dados"},
+    {"nome": "Pedro Costa", "area": "Cybersegurança"},
+    {"nome": "Laura Puglli", "area": "Cientista de Dados"},
+    {"nome": "Paulo Andrade", "area": "DevOps"},
+    {"nome": "Marina Rossi", "area": "UX/UI Designer"},
 ]
+mentores.extend(mentores_padrao)
 
 # FUNÇÕES
-
 
 def criar_perfil():
     usuario["nome"] = input("\nDigite seu nome: ")
@@ -159,7 +156,12 @@ def conectar_mentor():
         print("Nenhum mentor disponível para esta carreira.")
 
     print()
+def cadastrar_mentor():
+    nome = input("\nDigite o nome do mentor: ")
+    area = input("\nDigite o area do mentor: ")
 
+    mentores.append({"nome": nome, "area": area})
+    print("\nMentoria cadastrada com sucesso!\n")
 
 
 # MENU
@@ -172,7 +174,8 @@ while True:
     print("3. Gerar Plano de Ação")
     print("4. Ver Progresso")
     print("5. Conectar com Mentor")
-    print("6. Sair")
+    print("6. Cadastrar Voluntariado Mentoria")
+    print("7. Sair")
 
     opcao = input("Escolha uma opção: ")
 
