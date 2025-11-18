@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: dicionário e mentores">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: mentores&#10;feat: cadastro mentores">
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763474806981</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor: mentores&#10;feat: cadastro mentores">
+      <option name="closed" value="true" />
+      <created>1763476022214</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763476022214</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -172,6 +179,7 @@
     <MESSAGE value="feat: criado função gerar plano de carreira com opção de lista de tarefas" />
     <MESSAGE value="feat: criado função sugerir carreira e gerar planos&#10;refactor: dicionário mentores, menu e funções" />
     <MESSAGE value="refactor: dicionário e mentores" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: dicionário e mentores" />
+    <MESSAGE value="refactor: mentores&#10;feat: cadastro mentores" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: mentores&#10;feat: cadastro mentores" />
   </component>
 </project>

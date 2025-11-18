@@ -144,18 +144,22 @@ def ver_progresso():
 
 def conectar_mentor():
     if not carreira_escolhida:
-        print("\n⚠ Escolha uma carreira primeiro.\n")
+        print("\nEscolha uma carreira primeiro.\n")
         return
 
     print(f"\nMentores disponíveis para {carreira_escolhida}:\n")
 
-    if carreira_escolhida in mentores:
-        for m in mentores[carreira_escolhida]:
-            print(f"- {m}")
-    else:
-        print("Nenhum mentor disponível para esta carreira.")
+    encontrados = [ m for m in mentores if carreira_escolhida.lower() in m["area"].lower()]
+
+    if not(encontrados):
+        print("\nNenhum mentor disponível para esta área\n")
+        return
+    for mento in encontrados:
+        print(f"- {m['nome']} ({m['area']})")
 
     print()
+
+
 def cadastrar_mentor():
     nome = input("\nDigite o nome do mentor: ")
     area = input("\nDigite o area do mentor: ")
