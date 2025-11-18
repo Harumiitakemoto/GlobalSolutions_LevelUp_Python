@@ -39,100 +39,87 @@ mentores = [
     {"nome": "Paulo Andrade", "area": "DevOps"},
     {"nome": "Marina Rossi", "area": "UX/UI Designer"},
 ]
-mentores.extend(mentores_padrao)
+
 
 # FUNÇÕES
 
 def criar_perfil():
-    usuario["nome"] = input("\nDigite seu nome: ")
-    usuario["habilidades"] = [h.strip().title() for h in input("Habilidades (separadas por vírgula): ").split(",")]
-    usuario["interesses"] = [i.strip().title() for i in input("Interesses: ").split(",")]
-    usuario["estilo"] = input("Como você se define? (analítico, criativo, comunicador): ")
-
+    usuario["nome"] = input("Digite seu nome: ")
+    usuario["idade"] = input("Idade: ")
+    usuario["interesse"] = input("Qual área da tecnologia mais te interessa? (ex: backend, dados, segurança): ").lower()
     print("\nPerfil criado com sucesso!\n")
-
+#!!!falta add habilidades, verificar qnd possuir varios cadastratos!!!
 
 def sugerir_carreira():
     global carreira_escolhida
 
-    habilidades = usuario["habilidades"]
-    opcoes = []
-
-    # varre categorias
-    for categoria, areas in carreiras.items():
-        for carreira, skills in areas.items():
-            for h in habilidades:
-                if h in skills:
-                    opcoes.append(carreira)
-                    break
-
-    if not opcoes:
-        print("\nNenhuma carreira compatível encontrada.\n")
+    if "interesse" not in usuario or not usuario["interesse"]:
+        print("\nCrie um perfil antes.\n")
         return None
 
-    print("\nCarreiras compatíveis com você:\n")
-    for i, c in enumerate(opcoes, 1):
+    interesse = usuario["interesse"]
+
+    # Filtra carreiras de acordo com o interesse
+    sugestoes = [c for c in carreiras if interesse in c.lower()]
+
+    # Se nada encontrado, mostra todas
+    if not sugestoes:
+        sugestoes = list(carreiras.keys())
+
+    print("\nCarreiras recomendadas para você:")
+    for i, c in enumerate(sugestoes, 1):
         print(f"{i}. {c}")
 
-    escolha = int(input("\nEscolha sua carreira pelo número: ")) - 1
+    escolha = int(input("\nEscolha uma carreira pelo número: ")) - 1
 
-    if escolha < 0 or escolha >= len(opcoes):
-        print("Opção inválida!\n")
-        return None
+    if 0 <= escolha < len(sugestoes):
+        carreira_escolhida = sugestoes[escolha]
+        print(f"\n✔ Carreira escolhida: {carreira_escolhida}\n")
+        return carreira_escolhida
 
-    carreira_escolhida = opcoes[escolha]
-    print(f"\n✔ Carreira escolhida: {carreira_escolhida}\n")
-
-    return carreira_escolhida
-
+    print("\nOpção inválida.\n")
+    return None
 
 def gerar_plano():
     global plano
 
     if not carreira_escolhida:
-        print("\n⚠ Sugira e escolha uma carreira primeiro.\n")
+        print("\n⚠ Escolha uma carreira primeiro.\n")
         return
 
-    # recuperar habilidades específicas dessa carreira
-    habilidades = None
-    for categoria, areas in carreiras.items():
-        if carreira_escolhida in areas:
-            habilidades = areas[carreira_escolhida]
+    habilidades = carreiras[carreira_escolhida]
 
-    if habilidades is None:
-        print("Erro ao encontrar habilidades da carreira.\n")
-        return
-
+    # Se o plano está vazio, gera 2 tarefas iniciais aleatórias
     if not plano:
-        tarefas_iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
-        plano = [{"tarefa": t, "feito": False} for t in tarefas_iniciais]
+        iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
+        plano = [{"tarefa": t, "feito": False} for t in iniciais]
 
-    print("\nSeu plano de ação:")
+    print("\nSeu plano de estudos:")
     for i, item in enumerate(plano, 1):
         status = "✔️" if item["feito"] else "❌"
         print(f"{i}. {item['tarefa']} [{status}]")
 
-    if input("\nDeseja marcar tarefa como concluída? (s/n): ").lower() == "s":
-        indice = int(input("Digite o número: ")) - 1
+    concluir = input("\nMarcar tarefa como concluída? (s/n): ")
+
+    if concluir.lower() == "s":
+        indice = int(input("Qual número da tarefa? ")) - 1
+
         if 0 <= indice < len(plano):
             plano[indice]["feito"] = True
-            print("Tarefa concluída!")
+            print("Tarefa marcada como concluída! ✔")
 
-            concluidas = all(t["feito"] for t in plano)
-            ainda_faltam = len(plano) < len(habilidades)
-
-            if concluidas and ainda_faltam:
+            # Quando todas forem concluídas, liberar próxima
+            if all(t["feito"] for t in plano) and len(plano) < len(habilidades):
                 restantes = [h for h in habilidades if h not in [t["tarefa"] for t in plano]]
                 nova = random.choice(restantes)
                 plano.append({"tarefa": nova, "feito": False})
-                print(f"\n🎉 Nova tarefa desbloqueada: {nova}")
+                print(f"\nNova tarefa desbloqueada: {nova}")
+
         else:
-            print("Número inválido!")
-
-
+            print("Número inválido.")
 def ver_progresso():
     if not plano:
-        print("\n⚠ Gere um plano primeiro.\n")
+        print("\nGere um plano primeiro.\n")
         return
 
     total = len(plano)
@@ -140,7 +127,7 @@ def ver_progresso():
 
     barra = "#" * feitos + "-" * (total - feitos)
     print(f"\nProgresso: [{barra}] {feitos}/{total} tarefas concluídas.\n")
-
+#!!!mostrar o nome das tarefas a serem feitas  e as feitas com check!!!
 
 def conectar_mentor():
     if not carreira_escolhida:
@@ -151,7 +138,7 @@ def conectar_mentor():
 
     encontrados = [ m for m in mentores if carreira_escolhida.lower() in m["area"].lower()]
 
-    if not(encontrados):
+    if not encontrados:
         print("\nNenhum mentor disponível para esta área\n")
         return
     for m in encontrados:

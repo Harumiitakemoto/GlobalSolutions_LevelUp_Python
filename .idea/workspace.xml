@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: mentores&#10;feat: cadastro mentores">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: menu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +167,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763476022214</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactor: conectar mentores">
+      <option name="closed" value="true" />
+      <created>1763476500594</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763476500594</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactor: menu">
+      <option name="closed" value="true" />
+      <created>1763476658998</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763476658998</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -180,6 +197,8 @@
     <MESSAGE value="feat: criado função sugerir carreira e gerar planos&#10;refactor: dicionário mentores, menu e funções" />
     <MESSAGE value="refactor: dicionário e mentores" />
     <MESSAGE value="refactor: mentores&#10;feat: cadastro mentores" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: mentores&#10;feat: cadastro mentores" />
+    <MESSAGE value="refactor: conectar mentores" />
+    <MESSAGE value="refactor: menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: menu" />
   </component>
 </project>
