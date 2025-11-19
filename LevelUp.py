@@ -1,11 +1,13 @@
 import random
 
-# DADOS USUÁRIO
+#DADOS USUÁRIO
 usuarios = {}
 usuario_atual = None
 
-#  CARREIRAS
+carreiras_escolhidas = {}
+planos_estudo = {}
 
+# CARREIRAS
 carreiras = {
     "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
     "Desenvolvedor Frontend": ["HTML", "CSS", "JavaScript", "Design Responsivo"],
@@ -21,6 +23,7 @@ carreiras = {
     "Suporte Técnico": ["Atendimento", "Sistemas", "Resolução de Problemas"],
 }
 
+# MENTORES
 mentores = [
     {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend"},
     {"nome": "Rogerio Nakata", "area": "Desenvolvedor Backend"},
@@ -31,11 +34,11 @@ mentores = [
     {"nome": "Marina Rossi", "area": "UX/UI Designer"},
 ]
 
-#  FUNÇÕES DO SISTEMA
+# FUNÇÕES
 
 def criar_usuario():
     print("\n=== CADASTRO ===")
-    nome = input("Digite seu nome: ").lower()
+    nome = input("Nome: ").strip()
     if not nome:
         print("Nome inválido.")
         return None
@@ -62,136 +65,154 @@ def criar_usuario():
         "plano": []
     }
 
-    print(f"\nUsuário {nome} cadastrado com sucesso! Faça login com '{email}'.\n")
+    print(f"\nUsuário '{nome}' cadastrado com sucesso! Faça login com '{email}'.\n")
     return email
 
 
 def entrar_usuario():
     print("\n=== LOGIN ===")
-    email = input("Digite seu e-mail: ").lower().strip()
-
+    email = input("Digite seu e-mail: ").strip().lower()
     if email not in usuarios:
-        print("E-mail não encontrado! Cadastre-se primeiro.\n")
+        print("E-mail não encontrado. Cadastre-se primeiro.\n")
         return None
-
     print(f"\nBem-vindo(a), {usuarios[email]['nome']}!\n")
     return email
 
+
 def criar_perfil(email):
-    print("\n=== Atualizar Perfil ===")
-    usuarios[email]["idade"] = input("Idade: ")
-    usuarios[email]["interesse"] = input("Área de interesse: ").lower()
+    print("\n=== CRIAR/ATUALIZAR PERFIL ===")
+    idade = input(f"Idade [{usuarios[email]['idade']}]: ").strip()
+    if idade:
+        usuarios[email]['idade'] = idade
+
+    interesse = input(f"Interesse [{usuarios[email]['interesse']}]: ").strip().lower()
+    if interesse:
+        usuarios[email]['interesse'] = interesse
+
+    hab = input("Habilidades (separe por vírgula) ou ENTER para manter: ").strip()
+    if hab:
+        usuarios[email]['habilidades'] = [h.strip().title() for h in hab.split(",") if h.strip()]
+
     print("\nPerfil atualizado com sucesso!\n")
 
 
 def sugerir_carreira(email):
-    interesse = usuarios[email]["interesse"]
-
+    interesse = usuarios[email]['interesse']
     if not interesse:
-        print("\nCrie seu perfil primeiro.\n")
+        print("Defina seu interesse no perfil primeiro.\n")
         return
 
-    sugestoes = [c for c in carreiras if interesse in c.lower()]
+    sugestoes = [c for c in carreiras.keys() if interesse in c.lower()]
     if not sugestoes:
+        print("Nenhuma correspondência exata encontrada. Listando todas as carreiras.\n")
         sugestoes = list(carreiras.keys())
 
     print("\nCarreiras sugeridas:")
     for i, c in enumerate(sugestoes, 1):
         print(f"{i}. {c}")
 
-    escolha = int(input("\nEscolha pelo número: ")) - 1
-
-    if 0 <= escolha < len(sugestoes):
-        carreira = sugestoes[escolha]
-        carreiras_escolhidas[email] = carreira
-        print(f"\n✔ Carreira escolhida: {carreira}\n")
+    escolha = input("Escolha a carreira pelo número (ou 0 para cancelar): ").strip()
+    if not escolha.isdigit():
+        print("Entrada inválida.\n")
+        return
+    num = int(escolha)
+    if num == 0:
+        print("Operação cancelada.\n")
+        return
+    idx = num - 1
+    if 0 <= idx < len(sugestoes):
+        usuarios[email]['carreira'] = sugestoes[idx]
+        usuarios[email]['plano'] = []  # limpa plano anterior
+        print(f"\n✔ Carreira escolhida: {sugestoes[idx]}\n")
     else:
-        print("Opção inválida!")
+        print("Opção inválida.\n")
 
 
 def gerar_plano(email):
-    if email not in carreiras_escolhidas:
-        print("\nEscolha uma carreira primeiro!\n")
+    carreira = usuarios[email]['carreira']
+    if not carreira:
+        print("Escolha uma carreira primeiro.\n")
         return
 
-    carreira = carreiras_escolhidas[email]
     habilidades = carreiras[carreira]
 
-    if email not in planos_estudo:
+    if not usuarios[email]['plano']:
         iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
-        planos_estudo[email] = [{"tarefa": t, "feito": False} for t in iniciais]
+        usuarios[email]['plano'] = [{"tarefa": t, "feito": False} for t in iniciais]
 
-    plano = planos_estudo[email]
+    plano = usuarios[email]['plano']
 
     print("\n=== SEU PLANO DE ESTUDOS ===")
     for i, item in enumerate(plano, 1):
         status = "✔️" if item["feito"] else "❌"
         print(f"{i}. {item['tarefa']} [{status}]")
 
-    if input("\nMarcar tarefa como concluída? (s/n): ").lower() == "s":
-        num = int(input("Número da tarefa: ")) - 1
+    marcar = input("\nDeseja marcar alguma tarefa como concluída? (s/n): ").strip().lower()
+    if marcar != 's':
+        return
 
-        if 0 <= num < len(plano):
-            plano[num]["feito"] = True
-            print("\n✔ Tarefa concluída!")
+    num = input("Número da tarefa: ").strip()
+    if not num.isdigit():
+        print("Entrada inválida.")
+        return
+    idx = int(num) - 1
+    if idx < 0 or idx >= len(plano):
+        print("Número inválido.")
+        return
 
-            # liberar próxima
-            concluidas = all(t["feito"] for t in plano)
-            if concluidas and len(plano) < len(habilidades):
-                restantes = [
-                    h for h in habilidades if h not in [t["tarefa"] for t in plano]
-                ]
-                nova = random.choice(restantes)
-                plano.append({"tarefa": nova, "feito": False})
-                print(f"Nova tarefa liberada: {nova}\n")
+    if plano[idx]['feito']:
+        print("Essa tarefa já está marcada como concluída.")
+        return
+
+    plano[idx]['feito'] = True
+    print("✔ Tarefa marcada como concluída!")
+
+    # LIBERAR NOVAS TAREFAS
+    if all(t['feito'] for t in plano) and len(plano) < len(habilidades):
+        restantes = [h for h in habilidades if h not in [p['tarefa'] for p in plano]]
+        if restantes:
+            nova = random.choice(restantes)
+            plano.append({"tarefa": nova, "feito": False})
+            print(f"🔓 Nova tarefa liberada: {nova}")
 
 
 def ver_progresso(email):
-    if email not in planos_estudo:
-        print("\nGere um plano primeiro.\n")
-        return
-
-    plano = usuarios[usuario_atual]["plano"]
-
+    plano = usuarios[email]['plano']
     if not plano:
-        print("\nNenhum plano gerado.\n")
+        print("Nenhum plano gerado ainda.\n")
         return
 
-    plano = planos_estudo[email]
-    feitos = sum(t["feito"] for t in plano)
     total = len(plano)
+    feitos = sum(1 for t in plano if t['feito'])
+    barra = "#" * feitos + "-" * (total - feitos)
+    print(f"\nProgresso: [{barra}] {feitos}/{total} concluídas\n")
 
-    print(f"\nProgresso: {feitos}/{total} concluídas")
-    print("Concluídas:")
+    print("✔ Concluídas:")
     for t in plano:
-        if t["feito"]:
-            print("✔", t["tarefa"])
-    print("\nPendentes:")
+        if t['feito']:
+            print(f"- {t['tarefa']}")
+
+    print("\n❌ Pendentes:")
     for t in plano:
-        if not t["feito"]:
-            print("❌", t["tarefa"])
+        if not t['feito']:
+            print(f"- {t['tarefa']}")
+    print("")
 
 
 def conectar_mentor(email):
-    if email not in carreiras_escolhidas:
-        print("\nEscolha uma carreira primeiro!\n")
+    carreira = usuarios[email]['carreira']
+    if not carreira:
+        print("Escolha uma carreira primeiro.\n")
         return
 
-    carreira = carreiras_escolhidas[email]
-
-    print(f"\nMentores disponíveis para {carreira}:\n")
-
-    encontrados = [
-        m for m in mentores if carreira.lower() in m["area"].lower()
-    ]
-
+    encontrados = [m for m in mentores if carreira.lower() in m['area'].lower()]
+    print(f"\nMentores disponíveis para {carreira}:")
     if not encontrados:
-        print("Nenhum mentor encontrado!\n")
+        print("Nenhum mentor encontrado para esta área.\n")
         return
-
     for m in encontrados:
         print(f"- {m['nome']} ({m['area']})")
-    print()
+    print("")
 
 
 def cadastrar_mentor():
@@ -203,70 +224,81 @@ def cadastrar_mentor():
     mentores.append({"nome": nome, "area": area})
     print("Mentor cadastrado com sucesso!\n")
 
-#MENU
+
+# MENU
+
 def menu():
     global usuario_atual
     usuario_atual = None
 
     while True:
-            print("\n=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
-            print("1. Cadastrar usuário")
-            print("2. Login")
-            print("3. Criar/Atualizar Perfil")
-            print("4. Sugestão de Carreira")
-            print("5. Gerar Plano de Ação")
-            print("6. Ver Progresso")
-            print("7. Conectar com Mentor")
-            print("8. Cadastrar Mentor Voluntário")
-            print("9. Sair")
+        print("\n=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
+        print("1. Cadastrar usuário")
+        print("2. Login (por e-mail)")
+        print("3. Criar/Atualizar Perfil")
+        print("4. Sugestão de Carreira")
+        print("5. Gerar Plano de Ação")
+        print("6. Ver Progresso")
+        print("7. Conectar com Mentor")
+        print("8. Cadastrar Mentor Voluntário")
+        print("9. Logout")
+        print("0. Sair")
 
-            opc = input("Escolha: ")
+        opc = input("Escolha: ").strip()
 
-            if opc == "1":
-                usuario_atual = cadastrar_usuario()
+        if opc == "1":
+            usuario_atual = criar_usuario() or usuario_atual
 
-            elif opc == "2":
-                usuario_atual = login()
+        elif opc == "2":
+            usuario_atual = entrar_usuario() or usuario_atual
 
-            elif opc == "3":
-                if usuario_atual:
-                    criar_perfil(usuario_atual)
-                else:
-                    print("Faça login primeiro!")
-
-            elif opc == "4":
-                if usuario_atual:
-                    sugerir_carreira(usuario_atual)
-                else:
-                    print("Faça login primeiro!")
-
-            elif opc == "5":
-                if usuario_logado:
-                    gerar_plano(usuario_logado)
-                else:
-                    print("Faça login primeiro!")
-
-            elif opc == "6":
-                if usuario_atual:
-                    ver_progresso(usuario_atual)
-                else:
-                    print("Faça login primeiro!")
-
-            elif opc == "7":
-                if usuario_atual:
-                    conectar_mentor(usuario_atual)
-                else:
-                    print("Faça login primeiro!")
-
-            elif opc == "8":
-                cadastrar_mentor()
-
-            elif opc == "9":
-                print("Saindo...")
-                break
-
+        elif opc == "3":
+            if usuario_atual:
+                criar_perfil(usuario_atual)
             else:
-                print("Opção inválida!\n")
+                print("Faça login primeiro.\n")
+
+        elif opc == "4":
+            if usuario_atual:
+                sugerir_carreira(usuario_atual)
+            else:
+                print("Faça login primeiro.\n")
+
+        elif opc == "5":
+            if usuario_atual:
+                gerar_plano(usuario_atual)
+            else:
+                print("Faça login primeiro.\n")
+
+        elif opc == "6":
+            if usuario_atual:
+                ver_progresso(usuario_atual)
+            else:
+                print("Faça login primeiro.\n")
+
+        elif opc == "7":
+            if usuario_atual:
+                conectar_mentor(usuario_atual)
+            else:
+                print("Faça login primeiro.\n")
+
+        elif opc == "8":
+            cadastrar_mentor()
+
+        elif opc == "9":
+            if usuario_atual:
+                print(f"Usuário {usuarios[usuario_atual]['nome']} desconectado.\n")
+                usuario_atual = None
+            else:
+                print("Nenhum usuário está logado.\n")
+
+        elif opc == "0":
+            print("Saindo...")
+            break
+
+        else:
+            print("Opção inválida.\n")
 
 
+if __name__ == "__main__":
     menu()

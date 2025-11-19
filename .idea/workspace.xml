@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="feat: lista para armazanamento de dados de usuário">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: ajuste de validações">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
@@ -215,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763530624858</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactor: ajuste de validações">
+      <option name="closed" value="true" />
+      <created>1763531235891</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763531235891</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -234,6 +242,7 @@
     <MESSAGE value="refactor: funcionalidades gerar planos e sugerir carreira" />
     <MESSAGE value="refactor: funções e habilidades" />
     <MESSAGE value="feat: lista para armazanamento de dados de usuário" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: lista para armazanamento de dados de usuário" />
+    <MESSAGE value="refactor: ajuste de validações" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: ajuste de validações" />
   </component>
 </project>
