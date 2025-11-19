@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: menu">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: funcionalidades gerar planos e sugerir carreira">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
@@ -183,7 +183,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763476658998</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactor: funcionalidades gerar planos e sugerir carreira">
+      <option name="closed" value="true" />
+      <created>1763477921184</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763477921184</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor: funcionalidades gerar planos e sugerir carreira">
+      <option name="closed" value="true" />
+      <created>1763477955458</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763477955458</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,6 +215,7 @@
     <MESSAGE value="refactor: mentores&#10;feat: cadastro mentores" />
     <MESSAGE value="refactor: conectar mentores" />
     <MESSAGE value="refactor: menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: menu" />
+    <MESSAGE value="refactor: funcionalidades gerar planos e sugerir carreira" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: funcionalidades gerar planos e sugerir carreira" />
   </component>
 </project>

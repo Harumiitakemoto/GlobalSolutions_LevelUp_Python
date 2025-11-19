@@ -1,34 +1,25 @@
 import random
 
+# DADOS USUÁRIO
+usuarios = {}
+usuario_atual = None   # guarda o nome do usuário logado
 
-# DADOS DO SISTEMA
-usuario = {
-    "nome": "",
-    "habilidades": [],
-    "interesses": [],
-    "estilo": ""
-}
-carreira_escolhida = None
-plano = []
+#  CARREIRAS
 
-# DICIONÁRIO COMPLETO DE CARREIRAS
 carreiras = {
-
-        "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
-        "Desenvolvedor Frontend": ["HTML", "CSS", "JavaScript", "Design Responsivo"],
-        "Desenvolvedor Fullstack": ["HTML", "CSS", "JavaScript", "Python", "APIs"],
-        "Cientista de Dados": ["Python", "Estatística", "Machine Learning", "Pandas"],
-        "Analista de Dados": ["Excel", "SQL", "Python", "Dashboard"],
-        "Engenheiro de Dados": ["Python", "SQL", "Pipelines", "Cloud"],
-        "UX/UI Designer": ["Figma", "Design Thinking", "Prototipação"],
-        "QA / Tester": ["Testes Automatizados", "Selenium", "Lógica"],
-        "Cybersegurança": ["Redes", "Pentest", "Criptografia"],
-        "DevOps": ["Cloud", "CI/CD", "Containers"],
-        "Técnico de Informática": ["Hardware", "Manutenção", "Redes"],
-        "Suporte Técnico": ["Atendimento", "Sistemas", "Resolução de Problemas"],
-    }
-
-# MENTORES
+    "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
+    "Desenvolvedor Frontend": ["HTML", "CSS", "JavaScript", "Design Responsivo"],
+    "Desenvolvedor Fullstack": ["HTML", "CSS", "JavaScript", "Python", "APIs"],
+    "Cientista de Dados": ["Python", "Estatística", "Machine Learning", "Pandas"],
+    "Analista de Dados": ["Excel", "SQL", "Python", "Dashboard"],
+    "Engenheiro de Dados": ["Python", "SQL", "Pipelines", "Cloud"],
+    "UX/UI Designer": ["Figma", "Design Thinking", "Prototipação"],
+    "QA / Tester": ["Testes Automatizados", "Selenium", "Lógica"],
+    "Cybersegurança": ["Redes", "Pentest", "Criptografia"],
+    "DevOps": ["Cloud", "CI/CD", "Containers"],
+    "Técnico de Informática": ["Hardware", "Manutenção", "Redes"],
+    "Suporte Técnico": ["Atendimento", "Sistemas", "Resolução de Problemas"],
+}
 
 mentores = [
     {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend"},
@@ -40,148 +31,198 @@ mentores = [
     {"nome": "Marina Rossi", "area": "UX/UI Designer"},
 ]
 
+#  FUNÇÕES DO SISTEMA
 
-# FUNÇÕES
+def criar_usuario():
+    print("\n=== Criar Novo Usuário ===")
+    nome = input("Digite seu nome: ").lower()
 
-def criar_perfil():
-    usuario["nome"] = input("Digite seu nome: ")
-    usuario["idade"] = input("Idade: ")
-    usuario["interesse"] = input("Qual área da tecnologia mais te interessa? (ex: backend, dados, segurança): ").lower()
-    print("\nPerfil criado com sucesso!\n")
-#!!!falta add habilidades, verificar qnd possuir varios cadastratos!!!
+    if nome in usuarios:
+        print("\nEste nome já está cadastrado.\n")
+        return
+
+    idade = input("Idade: ")
+    interesse = input("Área da tecnologia que te interessa: ").lower()
+
+    usuarios[nome] = {
+        "idade": idade,
+        "interesse": interesse,
+        "habilidades": [],
+        "carreira": None,
+        "plano": []
+    }
+
+    print("\nUsuário criado com sucesso!\n")
+
+
+def entrar_usuario():
+    global usuario_atual
+
+    print("\n=== Entrar ===")
+    nome = input("Digite seu nome: ").lower()
+
+    if nome not in usuarios:
+        print("\nUsuário não encontrado. Crie um perfil.\n")
+        return
+
+    usuario_atual = nome
+    print(f"\nBem-vindo(a), {usuario_atual.capitalize()}!\n")
+
 
 def sugerir_carreira():
-    global carreira_escolhida
+    global usuarios, usuario_atual
 
-    if "interesse" not in usuario or not usuario["interesse"]:
-        print("\nCrie um perfil antes.\n")
-        return None
+    if usuario_atual is None:
+        print("\nEntre com um usuário primeiro.\n")
+        return
 
-    interesse = usuario["interesse"]
+    interesse = usuarios[usuario_atual]["interesse"]
 
-    # Filtra carreiras de acordo com o interesse
     sugestoes = [c for c in carreiras if interesse in c.lower()]
 
-    # Se nada encontrado, mostra todas
     if not sugestoes:
         sugestoes = list(carreiras.keys())
 
-    print("\nCarreiras recomendadas para você:")
+    print("\nCarreiras sugeridas:")
     for i, c in enumerate(sugestoes, 1):
         print(f"{i}. {c}")
 
-    escolha = int(input("\nEscolha uma carreira pelo número: ")) - 1
+    escolha = int(input("\nEscolha pelo número: ")) - 1
 
     if 0 <= escolha < len(sugestoes):
-        carreira_escolhida = sugestoes[escolha]
-        print(f"\n✔ Carreira escolhida: {carreira_escolhida}\n")
-        return carreira_escolhida
+        usuarios[usuario_atual]["carreira"] = sugestoes[escolha]
+        print(f"\n✔ Carreira escolhida: {sugestoes[escolha]}\n")
+    else:
+        print("Opção inválida.")
 
-    print("\nOpção inválida.\n")
-    return None
 
 def gerar_plano():
-    global plano
+    global usuarios, usuario_atual
 
-    if not carreira_escolhida:
-        print("\n⚠ Escolha uma carreira primeiro.\n")
+    if usuario_atual is None:
+        print("\nEntre com um usuário primeiro.\n")
         return
 
-    habilidades = carreiras[carreira_escolhida]
+    carreira = usuarios[usuario_atual]["carreira"]
 
-    # Se o plano está vazio, gera 2 tarefas iniciais aleatórias
+    if not carreira:
+        print("\nEscolha uma carreira primeiro.\n")
+        return
+
+    habilidades = carreiras[carreira]
+    plano = usuarios[usuario_atual]["plano"]
+
     if not plano:
-        iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
-        plano = [{"tarefa": t, "feito": False} for t in iniciais]
+        iniciais = random.sample(habilidades, k=2)
+        usuarios[usuario_atual]["plano"] = [{"tarefa": t, "feito": False} for t in iniciais]
 
-    print("\nSeu plano de estudos:")
+    plano = usuarios[usuario_atual]["plano"]
+
+    print("\n=== Plano de Ação ===")
     for i, item in enumerate(plano, 1):
         status = "✔️" if item["feito"] else "❌"
         print(f"{i}. {item['tarefa']} [{status}]")
 
-    concluir = input("\nMarcar tarefa como concluída? (s/n): ")
+    if input("\nConcluir tarefa? (s/n): ").lower() == "s":
+        idx = int(input("Número da tarefa: ")) - 1
 
-    if concluir.lower() == "s":
-        indice = int(input("Qual número da tarefa? ")) - 1
+        if 0 <= idx < len(plano):
+            plano[idx]["feito"] = True
+            print("\n✔ Tarefa concluída!")
 
-        if 0 <= indice < len(plano):
-            plano[indice]["feito"] = True
-            print("Tarefa marcada como concluída! ✔")
-
-            # Quando todas forem concluídas, liberar próxima
             if all(t["feito"] for t in plano) and len(plano) < len(habilidades):
                 restantes = [h for h in habilidades if h not in [t["tarefa"] for t in plano]]
                 nova = random.choice(restantes)
                 plano.append({"tarefa": nova, "feito": False})
-                print(f"\nNova tarefa desbloqueada: {nova}")
-
+                print(f"\nNova tarefa liberada: {nova}")
         else:
             print("Número inválido.")
+
+
 def ver_progresso():
+    if usuario_atual is None:
+        print("\nEntre com um usuário primeiro.\n")
+        return
+
+    plano = usuarios[usuario_atual]["plano"]
+
     if not plano:
-        print("\nGere um plano primeiro.\n")
+        print("\nNenhum plano gerado.\n")
         return
 
     total = len(plano)
     feitos = sum(1 for t in plano if t["feito"])
 
-    barra = "#" * feitos + "-" * (total - feitos)
-    print(f"\nProgresso: [{barra}] {feitos}/{total} tarefas concluídas.\n")
-#!!!mostrar o nome das tarefas a serem feitas  e as feitas com check!!!
+    print(f"\nProgresso: {feitos}/{total} concluídas")
+    print("Concluídas:")
+    for t in plano:
+        if t["feito"]:
+            print("✔", t["tarefa"])
+    print("\nPendentes:")
+    for t in plano:
+        if not t["feito"]:
+            print("❌", t["tarefa"])
+
 
 def conectar_mentor():
-    if not carreira_escolhida:
+    if usuario_atual is None:
+        print("\nEntre com um usuário primeiro.\n")
+        return
+
+    carreira = usuarios[usuario_atual]["carreira"]
+
+    if not carreira:
         print("\nEscolha uma carreira primeiro.\n")
         return
 
-    print(f"\nMentores disponíveis para {carreira_escolhida}:\n")
+    print(f"\nMentores em {carreira}:\n")
 
-    encontrados = [ m for m in mentores if carreira_escolhida.lower() in m["area"].lower()]
+    disponiveis = [m for m in mentores if m["area"].lower() == carreira.lower()]
 
-    if not encontrados:
-        print("\nNenhum mentor disponível para esta área\n")
-        return
-    for m in encontrados:
-        print(f"- {m['nome']} ({m['area']})")
-
-    print()
+    if not disponiveis:
+        print("Nenhum mentor disponível.")
+    else:
+        for m in disponiveis:
+            print("-", m["nome"], f"({m['area']})")
 
 
 def cadastrar_mentor():
-    nome = input("\nDigite o nome do mentor: ")
-    area = input("\nDigite o area do mentor: ")
+    nome = input("\nNome do mentor: ")
+    area = input("Área do mentor: ")
 
     mentores.append({"nome": nome, "area": area})
-    print("\nMentoria cadastrada com sucesso!\n")
+    print("\n✔ Mentor cadastrado!\n")
 
-
-# MENU
+#  MENU
 
 while True:
-    print("=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
-    print("1. Criar Perfil")
-    print("2. Sugestão de Carreira")
-    print("3. Gerar Plano de Ação")
-    print("4. Ver Progresso")
-    print("5. Conectar com Mentor")
-    print("6. Cadastrar Voluntariado Mentoria")
-    print("7. Sair")
+    print("\n=== LEVEL UP – SISTEMA DE MENTORIA ===")
+    print("1. Criar Usuário")
+    print("2. Entrar no Sistema")
+    print("3. Sugestão de Carreira")
+    print("4. Gerar Plano de Ação")
+    print("5. Ver Progresso")
+    print("6. Conectar com Mentor")
+    print("7. Cadastrar Mentor Voluntário")
+    print("8. Sair")
 
-    opcao = input("Escolha uma opção: ")
+    opcao = input("\nEscolha: ")
 
     if opcao == "1":
-        criar_perfil()
+        criar_usuario()
     elif opcao == "2":
-        sugerir_carreira()
+        entrar_usuario()
     elif opcao == "3":
-        gerar_plano()
+        sugerir_carreira()
     elif opcao == "4":
-        ver_progresso()
+        gerar_plano()
     elif opcao == "5":
-        conectar_mentor()
+        ver_progresso()
     elif opcao == "6":
+        conectar_mentor()
+    elif opcao == "7":
         cadastrar_mentor()
-    elif opc == "7":
+    elif opcao == "8":
         print("Saindo...")
         break
     else:
