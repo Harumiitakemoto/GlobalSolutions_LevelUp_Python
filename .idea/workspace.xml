@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: funcionalidades gerar planos e sugerir carreira">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="feat: lista para armazanamento de dados de usuário">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
@@ -199,7 +199,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763477955458</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="refactor: funções e habilidades">
+      <option name="closed" value="true" />
+      <created>1763529499425</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763529499426</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: lista para armazanamento de dados de usuário">
+      <option name="closed" value="true" />
+      <created>1763530624857</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763530624858</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -216,6 +232,8 @@
     <MESSAGE value="refactor: conectar mentores" />
     <MESSAGE value="refactor: menu" />
     <MESSAGE value="refactor: funcionalidades gerar planos e sugerir carreira" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: funcionalidades gerar planos e sugerir carreira" />
+    <MESSAGE value="refactor: funções e habilidades" />
+    <MESSAGE value="feat: lista para armazanamento de dados de usuário" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: lista para armazanamento de dados de usuário" />
   </component>
 </project>

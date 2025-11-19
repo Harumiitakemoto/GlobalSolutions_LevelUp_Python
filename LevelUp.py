@@ -2,7 +2,7 @@ import random
 
 # DADOS USUÁRIO
 usuarios = {}
-usuario_atual = None   # guarda o nome do usuário logado
+usuario_atual = None
 
 #  CARREIRAS
 
@@ -34,22 +34,27 @@ mentores = [
 #  FUNÇÕES DO SISTEMA
 
 def criar_usuario():
-    print("\n=== Criar Novo Usuário ===")
+    print("\n=== CADASTRO ===")
     nome = input("Digite seu nome: ").lower()
+    if not nome:
+        print("Nome inválido.")
+        return None
 
     while True:
-        email = input("Digite seu e-mail: ").lower().strip()
-
+        email = input("E-mail (será seu login): ").strip().lower()
+        if not email:
+            print("E-mail inválido. Tente novamente.")
+            continue
         if email in usuarios:
-            print("Este e-mail já está cadastrado! Tente outro.")
-        else:
-            break
+            print("Este e-mail já está cadastrado. Use outro ou faça login.")
+            return None
+        break
 
-
-    idade = input("Idade: ")
-    interesse = input("Área da tecnologia que te interessa: ").lower()
+    idade = input("Idade: ").strip()
+    interesse = input("Área de interesse (ex: backend, dados, segurança): ").strip().lower()
 
     usuarios[email] = {
+        "nome": nome,
         "idade": idade,
         "interesse": interesse,
         "habilidades": [],
@@ -57,14 +62,12 @@ def criar_usuario():
         "plano": []
     }
 
-    print(f"\nUsuário {nome} cadastrado com sucesso!\n")
+    print(f"\nUsuário {nome} cadastrado com sucesso! Faça login com '{email}'.\n")
     return email
 
 
 def entrar_usuario():
-    global usuario_atual
-
-    print("\n=== Entrar ===")
+    print("\n=== LOGIN ===")
     email = input("Digite seu e-mail: ").lower().strip()
 
     if email not in usuarios:
@@ -75,12 +78,11 @@ def entrar_usuario():
     return email
 
 def criar_perfil(email):
+    print("\n=== Atualizar Perfil ===")
     usuarios[email]["idade"] = input("Idade: ")
-    usuarios[email]["interesse"] = input(
-        "Área de interesse (backend, dados, segurança, etc): "
-    ).lower()
-
+    usuarios[email]["interesse"] = input("Área de interesse: ").lower()
     print("\nPerfil atualizado com sucesso!\n")
+
 
 def sugerir_carreira(email):
     interesse = usuarios[email]["interesse"]
@@ -193,73 +195,78 @@ def conectar_mentor(email):
 
 
 def cadastrar_mentor():
-    nome = input("\nNome do mentor: ")
-    area = input("Área do mentor: ")
-
+    nome = input("Nome do mentor: ").strip()
+    area = input("Área do mentor (ex: Desenvolvedor Backend): ").strip()
+    if not nome or not area:
+        print("Dados inválidos. Cancelado.")
+        return
     mentores.append({"nome": nome, "area": area})
-    print("\n✔ Mentor cadastrado!\n")
+    print("Mentor cadastrado com sucesso!\n")
 
 #MENU
+def menu():
+    global usuario_atual
+    usuario_atual = None
 
- while True:
-        print("\n=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
-        print("1. Cadastrar usuário")
-        print("2. Login")
-        print("3. Criar/Atualizar Perfil")
-        print("4. Sugestão de Carreira")
-        print("5. Gerar Plano de Ação")
-        print("6. Ver Progresso")
-        print("7. Conectar com Mentor")
-        print("8. Cadastrar Mentor Voluntário")
-        print("9. Sair")
+    while True:
+            print("\n=== LEVEL UP – ASSISTENTE DE CARREIRA ===")
+            print("1. Cadastrar usuário")
+            print("2. Login")
+            print("3. Criar/Atualizar Perfil")
+            print("4. Sugestão de Carreira")
+            print("5. Gerar Plano de Ação")
+            print("6. Ver Progresso")
+            print("7. Conectar com Mentor")
+            print("8. Cadastrar Mentor Voluntário")
+            print("9. Sair")
 
-        opc = input("Escolha: ")
+            opc = input("Escolha: ")
 
-        if opc == "1":
-            usuario_atual = cadastrar_usuario()
+            if opc == "1":
+                usuario_atual = cadastrar_usuario()
 
-        elif opc == "2":
-            usuario_atual = login()
+            elif opc == "2":
+                usuario_atual = login()
 
-        elif opc == "3":
-            if usuario_atual:
-                criar_perfil(usuario_atual)
+            elif opc == "3":
+                if usuario_atual:
+                    criar_perfil(usuario_atual)
+                else:
+                    print("Faça login primeiro!")
+
+            elif opc == "4":
+                if usuario_atual:
+                    sugerir_carreira(usuario_atual)
+                else:
+                    print("Faça login primeiro!")
+
+            elif opc == "5":
+                if usuario_logado:
+                    gerar_plano(usuario_logado)
+                else:
+                    print("Faça login primeiro!")
+
+            elif opc == "6":
+                if usuario_atual:
+                    ver_progresso(usuario_atual)
+                else:
+                    print("Faça login primeiro!")
+
+            elif opc == "7":
+                if usuario_atual:
+                    conectar_mentor(usuario_atual)
+                else:
+                    print("Faça login primeiro!")
+
+            elif opc == "8":
+                cadastrar_mentor()
+
+            elif opc == "9":
+                print("Saindo...")
+                break
+
             else:
-                print("Faça login primeiro!")
-
-        elif opc == "4":
-            if usuario_atual:
-                sugerir_carreira(usuario_atual)
-            else:
-                print("Faça login primeiro!")
-
-        elif opc == "5":
-            if usuario_logado:
-                gerar_plano(usuario_logado)
-            else:
-                print("Faça login primeiro!")
-
-        elif opc == "6":
-            if usuario_atual:
-                ver_progresso(usuario_atual)
-            else:
-                print("Faça login primeiro!")
-
-        elif opc == "7":
-            if usuario_atual:
-                conectar_mentor(usuario_atual)
-            else:
-                print("Faça login primeiro!")
-
-        elif opc == "8":
-            cadastrar_mentor()
-
-        elif opc == "9":
-            print("Saindo...")
-            break
-
-        else:
-            print("Opção inválida!\n")
+                print("Opção inválida!\n")
 
 
-menu()
+    menu()
