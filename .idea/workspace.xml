@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="refactor: ajuste de validações">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="fix: carreiras com pontos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
@@ -223,7 +223,31 @@
       <option name="project" value="LOCAL" />
       <updated>1763531235891</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="refactor: ajuste de validações">
+      <option name="closed" value="true" />
+      <created>1763532165631</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763532165631</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor: ajuste habilidades em carreiras">
+      <option name="closed" value="true" />
+      <created>1763689353453</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763689353453</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix: carreiras com pontos">
+      <option name="closed" value="true" />
+      <created>1763689913382</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1763689913382</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -243,6 +267,8 @@
     <MESSAGE value="refactor: funções e habilidades" />
     <MESSAGE value="feat: lista para armazanamento de dados de usuário" />
     <MESSAGE value="refactor: ajuste de validações" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: ajuste de validações" />
+    <MESSAGE value="refactor: ajuste habilidades em carreiras" />
+    <MESSAGE value="fix: carreiras com pontos" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: carreiras com pontos" />
   </component>
 </project>

@@ -10,54 +10,108 @@ planos_estudo = {}
 
 # CARREIRAS
 carreiras = {
-    "Desenvolvedor Backend": [
-        {"tarefa": "Estudar 1h por dia os fundamentos de Python", "pontos": 10},
-        {"tarefa": "Ler um artigo sobre boas práticas de Git", "pontos": 15},
-        {"tarefa": "Criar um pequeno projeto CRUD usando Python", "pontos": 25},
-        {"tarefa": "Assistir uma videoaula sobre APIs REST", "pontos": 20},
-        {"tarefa": "Criar um banco de dados simples e conectar ao Python", "pontos": 30},
-        {"tarefa": "Criar uma API usando Flask ou FastAPI", "pontos": 50},
-    ],
-
     "Desenvolvedor Frontend": [
-        {"tarefa": "Praticar 1h de HTML por dia", "pontos": 10},
-        {"tarefa": "Assistir videoaula sobre CSS Flexbox", "pontos": 15},
-        {"tarefa": "Criar um site responsivo simples", "pontos": 25},
-        {"tarefa": "Ler artigo sobre design responsivo", "pontos": 15},
-        {"tarefa": "Criar um mini projeto usando JavaScript", "pontos": 30},
-        {"tarefa": "Reproduzir o layout de um site famoso no Figma", "pontos": 40},
+        ("Ler artigo de HTML + tags principais", 10),
+        ("Assistir aula de CSS e montar layout simples", 15),
+        ("Criar página responsiva com Flexbox/Grid", 20),
+        ("Estudar JavaScript básico e DOM", 25),
+        ("Criar landing page completa", 30)
     ],
 
-    "Desenvolvedor Fullstack": [
-        {"tarefa": "Estudar fundamentos de HTML, CSS e JS (1h/dia)", "pontos": 10},
-        {"tarefa": "Criar backend simples em Python", "pontos": 25},
-        {"tarefa": "Criar frontend consumindo a API criada", "pontos": 30},
-        {"tarefa": "Ler artigo sobre autenticação JWT", "pontos": 20},
-        {"tarefa": "Criar um mini sistema fullstack completo", "pontos": 40},
-        {"tarefa": "Subir o projeto no GitHub", "pontos": 15},
+    "Desenvolvedor Backend": [
+        ("Praticar lógica de programação com Python", 10),
+        ("Criar funções, módulos e manipular arquivos", 15),
+        ("Criar uma API simples com Flask ou FastAPI", 20),
+        ("Aprender SQL e manipular banco de dados", 25),
+        ("Criar um sistema completo API + Banco de Dados", 30)
+    ],
+
+    "Desenvolvedor Python": [
+        ("Instalar Python e configurar ambiente", 10),
+        ("Estudar 1h por dia sintaxe básica", 15),
+        ("Criar 3 programas simples (calculadora, listas)", 20),
+        ("Estudar módulos, funções e arquivos", 25),
+        ("Criar um mini-projeto (API, CRUD ou jogo)", 30)
+    ],
+
+    "Desenvolvedor Java": [
+        ("Revisar lógica e variáveis em Java", 10),
+        ("Praticar if/else, loops e arrays", 15),
+        ("Fazer exercícios de classes e objetos", 20),
+        ("Criar projeto simples (sistema de login)", 25),
+        ("Criar CRUD completo em Java", 30)
+    ],
+
+    "UX/UI Designer": [
+        ("Estudar princípios de design", 10),
+        ("Analisar 3 interfaces famosas", 15),
+        ("Criar wireframes de um app", 20),
+        ("Estudar prototipação no Figma", 25),
+        ("Criar design completo de um app/site", 30)
+    ],
+
+    "Analista de Dados": [
+        ("Estudar fundamentos de dados", 10),
+        ("Aprender Excel intermediário", 15),
+        ("Estudar SQL básico e fazer 10 consultas", 20),
+        ("Aprender Pandas para análise", 25),
+        ("Criar dashboard no Power BI ou Tableau", 30)
     ],
 
     "Cientista de Dados": [
-        {"tarefa": "Estudar 1h por dia de Python", "pontos": 10},
-        {"tarefa": "Ler artigo sobre estatística descritiva", "pontos": 15},
-        {"tarefa": "Criar gráficos com Pandas", "pontos": 20},
-        {"tarefa": "Criar um notebook analisando dataset do Kaggle", "pontos": 25},
-        {"tarefa": "Assistir aula de Machine Learning", "pontos": 25},
-        {"tarefa": "Fazer um mini projeto de regressão", "pontos": 50},
+        ("Relembrar Python e bibliotecas base", 10),
+        ("Estudar estatística básica", 15),
+        ("Aprender Numpy e Pandas", 20),
+        ("Criar primeiros modelos com Scikit-Learn", 25),
+        ("Criar modelo completo + relatório", 30)
     ],
+
+    "QA / Teste de Software": [
+        ("Estudar tipos de testes", 10),
+        ("Criar casos de teste simples", 15),
+        ("Estudar testes manuais na prática", 20),
+        ("Aprender automação com Selenium", 25),
+        ("Criar suíte de testes automatizados", 30)
+    ],
+
+    "DevOps / Cloud": [
+        ("Estudar fundamentos de Cloud", 10),
+        ("Aprender Linux básico", 15),
+        ("Aprender Docker e criar containers", 20),
+        ("Estudar CI/CD e pipelines", 25),
+        ("Criar pipeline + deploy automatizado", 30)
+    ],
+
+    "Cybersecurity": [
+        ("Estudar fundamentos de segurança", 10),
+        ("Estudar ataques comuns (SQLi, XSS, CSRF)", 15),
+        ("Praticar com Linux + Kali básico", 20),
+        ("Aprender pentest em apps web", 25),
+        ("Criar relatório completo de vulnerabilidades", 30)
+    ],
+
+    "Engenharia de Software": [
+        ("Estudar requisitos e boas práticas", 10),
+        ("Fazer diagrama simples (UML)", 15),
+        ("Estudar arquitetura e padrões de projeto", 20),
+        ("Criar módulo pequeno bem estruturado", 25),
+        ("Desenvolver mini-sistema completo", 30)
+    ]
 }
-
-
 
 # MENTORES
 mentores = [
     {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend"},
     {"nome": "Rogerio Nakata", "area": "Desenvolvedor Backend"},
+    {"nome": "Renata Campos", "area": "Desenvolvedor Python"},
+    {"nome": "Isabela Izumi", "area": "Desenvolvedor Java"},
     {"nome": "Camila Silva", "area": "Analista de Dados"},
-    {"nome": "Pedro Costa", "area": "Cybersegurança"},
+    {"nome": "Pedro Costa", "area": "Cybersecurity"},
     {"nome": "Laura Puglli", "area": "Cientista de Dados"},
-    {"nome": "Paulo Andrade", "area": "DevOps"},
+    {"nome": "Paulo Andrade", "area": "DevOps / Cloud"},
     {"nome": "Marina Rossi", "area": "UX/UI Designer"},
+    {"nome": "Jonathan Soares", "area": "QA / Teste de Software"},
+    {"nome": "Marcio Lopes", "area": "Engenharia de Software"},
 ]
 
 # FUNÇÕES
@@ -154,7 +208,6 @@ def sugerir_carreira(email):
     else:
         print("Opção inválida.\n")
 
-
 def gerar_plano(email):
     carreira = usuarios[email]['carreira']
     if not carreira:
@@ -163,16 +216,30 @@ def gerar_plano(email):
 
     habilidades = carreiras[carreira]
 
+    # SE O USUÁRIO AINDA NÃO TEM PLANO
     if not usuarios[email]['plano']:
         iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
-        usuarios[email]['plano'] = [{"tarefa": t, "feito": False} for t in iniciais]
+
+        # Criar tarefas com pontos progressivos
+        usuarios[email]['plano'] = []
+        for t in iniciais:
+            usuarios[email]['plano'].append({
+                "tarefa": t,
+                "feito": False,
+                "pontos": random.choice([10, 20, 30])  # inicial simples
+            })
+
+        # Criar também o campo de pontuação total
+        usuarios[email]['pontos'] = 0
 
     plano = usuarios[email]['plano']
 
     print("\n=== SEU PLANO DE ESTUDOS ===")
     for i, item in enumerate(plano, 1):
         status = "✔️" if item["feito"] else "❌"
-        print(f"{i}. {item['tarefa']} [{status}]")
+        print(f"{i}. {item['tarefa']} [{status}]  (+{item['pontos']} pts)")
+
+    print(f"\nPontos totais: {usuarios[email]['pontos']} pts")
 
     marcar = input("\nDeseja marcar alguma tarefa como concluída? (s/n): ").strip().lower()
     if marcar != 's':
@@ -191,17 +258,31 @@ def gerar_plano(email):
         print("Essa tarefa já está marcada como concluída.")
         return
 
+    # MARCAR COMO FEITO
     plano[idx]['feito'] = True
-    print("✔ Tarefa marcada como concluída!")
+    ganho = plano[idx]['pontos']
+    usuarios[email]['pontos'] += ganho
+
+    print(f"✔ Tarefa concluída! Você ganhou +{ganho} pontos!")
+    print(f"🏆 Pontos totais agora: {usuarios[email]['pontos']} pts")
 
     # LIBERAR NOVAS TAREFAS
     if all(t['feito'] for t in plano) and len(plano) < len(habilidades):
         restantes = [h for h in habilidades if h not in [p['tarefa'] for p in plano]]
         if restantes:
             nova = random.choice(restantes)
-            plano.append({"tarefa": nova, "feito": False})
-            print(f"🔓 Nova tarefa liberada: {nova}")
 
+            # Deixa novas tarefas mais difíceis terem mais pontos
+            dificuldade = len(plano)  # quanto mais tarefas, mais difícil
+            pontos = min(10 + dificuldade * 10, 50)
+
+            plano.append({
+                "tarefa": nova,
+                "feito": False,
+                "pontos": pontos
+            })
+
+            print(f"\nNova tarefa liberada: {nova} (+{pontos} pts)")
 
 def ver_progresso(email):
     plano = usuarios[email]['plano']
