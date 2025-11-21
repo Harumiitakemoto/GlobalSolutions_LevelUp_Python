@@ -101,17 +101,17 @@ carreiras = {
 
 # MENTORES
 mentores = [
-    {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend"},
-    {"nome": "Rogerio Nakata", "area": "Desenvolvedor Backend"},
-    {"nome": "Renata Campos", "area": "Desenvolvedor Python"},
-    {"nome": "Isabela Izumi", "area": "Desenvolvedor Java"},
-    {"nome": "Camila Silva", "area": "Analista de Dados"},
-    {"nome": "Pedro Costa", "area": "Cybersecurity"},
-    {"nome": "Laura Puglli", "area": "Cientista de Dados"},
-    {"nome": "Paulo Andrade", "area": "DevOps / Cloud"},
-    {"nome": "Marina Rossi", "area": "UX/UI Designer"},
-    {"nome": "Jonathan Soares", "area": "QA / Teste de Software"},
-    {"nome": "Marcio Lopes", "area": "Engenharia de Software"},
+    {"nome": "Mateus Oliveira", "area": "Desenvolvedor Frontend","email":"mateusoliv@gmail.com"},
+    {"nome": "Rogerio Nakata", "area": "Desenvolvedor Backend","email":"devnakata@gmail.com"},
+    {"nome": "Renata Campos", "area": "Desenvolvedor Python","email":"recampos@outlook.com"},
+    {"nome": "Isabela Izumi", "area": "Desenvolvedor Java","email":"izajava@gmail.com"},
+    {"nome": "Camila Silva", "area": "Analista de Dados","email":"camilassilva@yahoo.com.br"},
+    {"nome": "Pedro Costa", "area": "Cybersecurity","email":"pccyber3000@gmail.com"},
+    {"nome": "Laura Puglli", "area": "Cientista de Dados","email":"laurasrpuglli@gmail.com"},
+    {"nome": "Paulo Andrade", "area": "DevOps / Cloud","email":"pauloand@hotmail.com.com"},
+    {"nome": "Marina Rossi", "area": "UX/UI Designer","email":"rossidesign@gmail.com"},
+    {"nome": "Jonathan Soares", "area": "QA / Teste de Software","email":"jonasqa@outlook.com"},
+    {"nome": "Marcio Lopes", "area": "Engenharia de Software","email":"marciolopes89@uol.com"},
 ]
 
 # FUNÇÕES
@@ -149,7 +149,6 @@ def criar_usuario():
     print(f"\nUsuário '{nome}' cadastrado com sucesso! Faça login com '{email}'.\n")
     return email
 
-
 def entrar_usuario():
     print("\n=== LOGIN ===")
     email = input("Digite seu e-mail: ").strip().lower()
@@ -158,7 +157,6 @@ def entrar_usuario():
         return None
     print(f"\nBem-vindo(a), {usuarios[email]['nome']}!\n")
     return email
-
 
 def criar_perfil(email):
     print("\n=== CRIAR/ATUALIZAR PERFIL ===")
@@ -175,7 +173,6 @@ def criar_perfil(email):
         usuarios[email]['habilidades'] = [h.strip().title() for h in hab.split(",") if h.strip()]
 
     print("\nPerfil atualizado com sucesso!\n")
-
 
 def sugerir_carreira(email):
     interesse = usuarios[email]['interesse']
@@ -282,7 +279,6 @@ def gerar_plano(email):
         usuarios[email]['bonus_recebido'] = True
         print("\n🎉 PARABÉNS! Você concluiu sua trilha com 100 pontos! Continue estudando ou revise sua jornada! 🎉\n")
 
-
 def ver_progresso(email):
     carreira = usuarios[email]["carreira"]
     if not carreira:
@@ -338,13 +334,13 @@ def conectar_mentor(email):
         print("Nenhum mentor encontrado para esta área.\n")
         return
     for m in encontrados:
-        print(f"- {m['nome']} ({m['area']})")
+        print(f"- {m['nome']} ({m['area']}) - e-mail:{m['email']}")
     print("")
-
 
 def cadastrar_mentor():
     nome = input("Nome do mentor: ").strip()
     area = input("Área do mentor (ex: Desenvolvedor Backend): ").strip()
+    email = input("email para contato: ").strip()
     if not nome or not area:
         print("Dados inválidos. Cancelado.")
         return
