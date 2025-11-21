@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="fix: carreiras, plano e pontuação">
+    <list default="true" id="0782b6f4-dce7-4389-a83f-a25bed3d8bd8" name="Changes" comment="feat: menssagem 100 pontos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/LevelUp.py" afterDir="false" />
     </list>
@@ -255,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763691433314</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat: menssagem 100 pontos">
+      <option name="closed" value="true" />
+      <created>1763692376756</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1763692376756</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -278,6 +286,7 @@
     <MESSAGE value="refactor: ajuste habilidades em carreiras" />
     <MESSAGE value="fix: carreiras com pontos" />
     <MESSAGE value="fix: carreiras, plano e pontuação" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: carreiras, plano e pontuação" />
+    <MESSAGE value="feat: menssagem 100 pontos" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: menssagem 100 pontos" />
   </component>
 </project>

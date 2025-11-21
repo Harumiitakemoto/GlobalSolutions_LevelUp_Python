@@ -216,20 +216,22 @@ def gerar_plano(email):
 
     habilidades = carreiras[carreira]
 
+    # calcula o máximo de pontos da carreira
+    max_pontos = sum(h[1] for h in habilidades)
+    usuarios[email]['max_pontos'] = max_pontos
+
     # SE O USUÁRIO AINDA NÃO TEM PLANO
     if not usuarios[email]['plano']:
         iniciais = random.sample(habilidades, k=min(2, len(habilidades)))
 
-        # Criar tarefas com pontos progressivos
         usuarios[email]['plano'] = []
-        for t in iniciais:
+        for tarefa, pontos in iniciais:
             usuarios[email]['plano'].append({
-                "tarefa": t,
+                "tarefa": tarefa,
                 "feito": False,
-                "pontos": random.choice([10, 20, 30])  # inicial simples
+                "pontos": pontos  # agora usa pontos reais
             })
 
-        # Criar também o campo de pontuação total
         usuarios[email]['pontos'] = 0
 
     plano = usuarios[email]['plano']
@@ -239,7 +241,7 @@ def gerar_plano(email):
         status = "✔️" if item["feito"] else "❌"
         print(f"{i}. {item['tarefa']} [{status}]  (+{item['pontos']} pts)")
 
-    print(f"\nPontos totais: {usuarios[email]['pontos']} pts")
+    print(f"\nPontos totais: {usuarios[email]['pontos']} pts (meta: {usuarios[email]['max_pontos']} pts)")
 
     marcar = input("\nDeseja marcar alguma tarefa como concluída? (s/n): ").strip().lower()
     if marcar != 's':
@@ -263,61 +265,66 @@ def gerar_plano(email):
     ganho = plano[idx]['pontos']
     usuarios[email]['pontos'] += ganho
 
-    print(f"✔ Tarefa concluída! Você ganhou +{ganho} pontos!")
-    print(f"🏆 Pontos totais agora: {usuarios[email]['pontos']} pts")
-
     # LIBERAR NOVAS TAREFAS
     if all(t['feito'] for t in plano) and len(plano) < len(habilidades):
-        restantes = [h for h in habilidades if h not in [p['tarefa'] for p in plano]]
+        restantes = [h for h in habilidades if h[0] not in [p['tarefa'] for p in plano]]
         if restantes:
-            nova = random.choice(restantes)
-
-            # Deixa novas tarefas mais difíceis terem mais pontos
-            dificuldade = len(plano)  # quanto mais tarefas, mais difícil
-            pontos = min(10 + dificuldade * 10, 50)
-
+            nova_tarefa, nova_pontos = random.choice(restantes)
             plano.append({
-                "tarefa": nova,
+                "tarefa": nova_tarefa,
                 "feito": False,
-                "pontos": pontos
+                "pontos": nova_pontos
             })
+            print(f"\nNova tarefa liberada: {nova_tarefa} (+{nova_pontos} pts)")
 
-            print(f"\nNova tarefa liberada: {nova} (+{pontos} pts)")
+    # VERIFICAR CONCLUSÃO
+    if usuarios[email]['pontos'] >= 100 and not usuarios[email].get("bonus_recebido", False):
+        usuarios[email]['bonus_recebido'] = True
+        print("\n🎉 PARABÉNS! Você concluiu sua trilha com 100 pontos! Continue estudando ou revise sua jornada! 🎉\n")
+
 
 def ver_progresso(email):
-    plano = usuarios[email]['plano']
-    if not plano:
-        print("Nenhum plano gerado ainda.\n")
+    carreira = usuarios[email]["carreira"]
+    if not carreira:
+        print("Escolha uma carreira primeiro.\n")
         return
 
-    total = len(plano)
-    feitos = sum(1 for t in plano if t['feito'])
-    barra = "#" * feitos + "-" * (total - feitos)
+    habilidades = carreiras[carreira]            # sempre 5 tarefas da carreira
+    plano = usuarios[email]["plano"]             # tarefas liberadas
+    pontos = usuarios[email].get("pontos", 0)
 
-    pontos = usuarios[email].get('pontos', 0)
+    total = len(habilidades)                     # total fixo da trilha
+    feitos = sum(1 for t in plano if t["feito"]) # feitos entre liberadas
 
-    print(f"\n=== PROGRESSO DO SEU PLANO ===")
-    print(f"Progresso: [{barra}] {feitos}/{total} concluídas")
+    # Percentual baseado NO TOTAL da trilha (5 tarefas)
+    percentual = int((feitos / total) * 100)
+
+    # Barra visual ■ □
+    barra = "■" * (percentual // 10) + "□" * (10 - percentual // 10)
+
+    print("\n=== PROGRESSO DO SEU PLANO ===")
+    print(f"Progresso: {barra} {percentual}% ({feitos}/{total})")
     print(f"Pontuação total: {pontos} pts\n")
 
     print("✔ Concluídas:")
-    for t in plano:
-        if t["feito"]:
-            print(f"- {t['tarefa']} (+{t['pontos']} pts)")
+    for item in plano:
+        if item["feito"]:
+            print(f"- {item['tarefa']} (+{item['pontos']} pts)")
 
-    print("\n❌ Pendentes:")
-    for t in plano:
-        if not t["feito"]:
-            print(f"- {t['tarefa']} (+{t['pontos']} pts)")
+    print("\n⏳ Em andamento:")
+    for item in plano:
+        if not item["feito"]:
+            print(f"- {item['tarefa']} (+{item['pontos']} pts)")
 
     print("")
 
-    # MENSAGEM 100 PONTOS
-    if pontos >= 100:
-        print("""🏆 PARABÉNS, VOCÊ CHEGOU A 100 PONTOS! 🏆
-        Você concluiu uma trilha inteira de evolução!
-        Continue desbloqueando tarefas e aprimorando sua carreira. 🚀
-        A LevelUp está acompanhando sua jornada. 💙\n""")
+    # Mensagem de trilha fechada
+    if feitos == total or pontos >= 100:
+        print("""
+🏆 PARABÉNS, VOCÊ CONCLUIU SUA TRILHA! 🏆  
+Você alcançou o nível máximo dessa carreira!  
+Continue estudando, evoluindo e desbloqueando novas habilidades. 🚀💙
+""")
 
 def conectar_mentor(email):
     carreira = usuarios[email]['carreira']
