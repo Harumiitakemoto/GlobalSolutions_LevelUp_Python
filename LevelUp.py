@@ -7,116 +7,46 @@ usuario_atual = None
 carreiras_escolhidas = {}
 planos_estudo = {}
 
+
 # CARREIRAS
 carreiras = {
     "Desenvolvedor Backend": [
-        "Estudar 1h por dia os fundamentos de Python",
-        "Criar um pequeno projeto CRUD usando Python",
-        "Assistir uma videoaula sobre APIs REST",
-        "Ler um artigo sobre boas práticas de Git",
-        "Criar um banco de dados simples e conectar ao Python",
-        "Fazer um projeto de API usando Flask ou FastAPI",
+        {"tarefa": "Estudar 1h por dia os fundamentos de Python", "pontos": 10},
+        {"tarefa": "Ler um artigo sobre boas práticas de Git", "pontos": 15},
+        {"tarefa": "Criar um pequeno projeto CRUD usando Python", "pontos": 25},
+        {"tarefa": "Assistir uma videoaula sobre APIs REST", "pontos": 20},
+        {"tarefa": "Criar um banco de dados simples e conectar ao Python", "pontos": 30},
+        {"tarefa": "Criar uma API usando Flask ou FastAPI", "pontos": 50},
     ],
 
     "Desenvolvedor Frontend": [
-        "Praticar 1h de HTML por dia criando pequenas páginas",
-        "Assistir uma videoaula sobre CSS Flexbox e Grid",
-        "Criar um site simples responsivo",
-        "Ler um artigo sobre boas práticas de design responsivo",
-        "Criar um mini projeto usando JavaScript puro",
-        "Reproduzir o layout de um site famoso no Figma",
+        {"tarefa": "Praticar 1h de HTML por dia", "pontos": 10},
+        {"tarefa": "Assistir videoaula sobre CSS Flexbox", "pontos": 15},
+        {"tarefa": "Criar um site responsivo simples", "pontos": 25},
+        {"tarefa": "Ler artigo sobre design responsivo", "pontos": 15},
+        {"tarefa": "Criar um mini projeto usando JavaScript", "pontos": 30},
+        {"tarefa": "Reproduzir o layout de um site famoso no Figma", "pontos": 40},
     ],
 
     "Desenvolvedor Fullstack": [
-        "Estudar fundamentos de HTML, CSS e JS por 1h/dia",
-        "Criar um projeto simples Fullstack (frontend + API)",
-        "Ler um artigo sobre autenticação JWT",
-        "Criar backend em Python com Flask/FastAPI",
-        "Criar frontend com HTML/CSS/JS consumindo a API",
-        "Subir o projeto no GitHub",
+        {"tarefa": "Estudar fundamentos de HTML, CSS e JS (1h/dia)", "pontos": 10},
+        {"tarefa": "Criar backend simples em Python", "pontos": 25},
+        {"tarefa": "Criar frontend consumindo a API criada", "pontos": 30},
+        {"tarefa": "Ler artigo sobre autenticação JWT", "pontos": 20},
+        {"tarefa": "Criar um mini sistema fullstack completo", "pontos": 40},
+        {"tarefa": "Subir o projeto no GitHub", "pontos": 15},
     ],
 
     "Cientista de Dados": [
-        "Estudar 1h por dia de Python focado em análise",
-        "Assistir uma aula introdutória de Machine Learning",
-        "Criar um notebook analisando um dataset do Kaggle",
-        "Ler um artigo sobre estatística descritiva",
-        "Criar gráficos usando Pandas e Matplotlib",
-        "Fazer um mini projeto de previsão (regressão simples)",
-    ],
-
-    "Analista de Dados": [
-        "Estudar SQL por 1h por dia",
-        "Criar dashboards simples no Power BI ou Looker",
-        "Assistir uma videoaula sobre ETL",
-        "Ler um artigo sobre KPIs",
-        "Criar consultas SQL resolvendo problemas reais",
-        "Analisar um dataset público e gerar insights",
-    ],
-
-    "Engenheiro de Dados": [
-        "Estudar fundamentos de Python e SQL diariamente",
-        "Assistir uma aula sobre arquitetura de pipelines",
-        "Criar um pipeline simples com arquivos CSV",
-        "Ler um artigo sobre Data Lakes e Data Warehouses",
-        "Criar um script de ETL automatizado",
-        "Estudar conceitos básicos de Cloud (AWS ou GCP)",
-    ],
-
-    "UX/UI Designer": [
-        "Estudar fundamentos de design no Figma por 1h/dia",
-        "Criar um wireframe de um app simples",
-        "Assistir videoaula de prototipação",
-        "Ler artigo sobre heurísticas de Nielsen",
-        "Criar uma landing page no Figma",
-        "Refazer o design de um app famoso com melhorias",
-    ],
-
-    "QA / Tester": [
-        "Estudar lógica de testes por 1h/dia",
-        "Assistir uma videoaula de testes automatizados",
-        "Criar casos de teste para um site real",
-        "Ler artigo sobre testes funcionais vs unitários",
-        "Instalar o Selenium e testar um site simples",
-        "Criar relatório de bugs fictícios",
-    ],
-
-    "Cybersegurança": [
-        "Estudar fundamentos de redes por 1h/dia",
-        "Assistir videoaula sobre pentest",
-        "Ler um artigo sobre OWASP Top 10",
-        "Testar segurança de uma aplicação simples (simulação)",
-        "Aprender a usar ferramentas como Nmap",
-        "Criar relatório de vulnerabilidades básicas",
-    ],
-
-    "DevOps": [
-        "Estudar fundamentos de Cloud por 1h/dia",
-        "Assistir videoaula de CI/CD",
-        "Criar um pipeline simples no GitHub Actions",
-        "Ler artigo sobre containers com Docker",
-        "Containerizar um pequeno projeto",
-        "Criar deploy básico em cloud free-tier",
-    ],
-
-    "Técnico de Informática": [
-        "Estudar hardware por 1h/dia",
-        "Assistir videoaula de manutenção preventiva",
-        "Abrir um computador e identificar peças (simulado)",
-        "Ler artigo sobre redes básicas",
-        "Resolver problemas simulados de atendimento",
-        "Criar checklist de manutenção",
-    ],
-
-    "Suporte Técnico": [
-        "Estudar atendimento ao cliente 1h/dia",
-        "Assistir videoaula de troubleshooting",
-        "Ler artigo sobre documentação de problemas",
-        "Resolver simulações de problemas comuns",
-        "Estudar sistemas operacionais (Win/Linux)",
-        "Criar um guia de soluções frequentes",
+        {"tarefa": "Estudar 1h por dia de Python", "pontos": 10},
+        {"tarefa": "Ler artigo sobre estatística descritiva", "pontos": 15},
+        {"tarefa": "Criar gráficos com Pandas", "pontos": 20},
+        {"tarefa": "Criar um notebook analisando dataset do Kaggle", "pontos": 25},
+        {"tarefa": "Assistir aula de Machine Learning", "pontos": 25},
+        {"tarefa": "Fazer um mini projeto de regressão", "pontos": 50},
     ],
 }
+
 
 
 # MENTORES
@@ -158,7 +88,8 @@ def criar_usuario():
         "interesse": interesse,
         "habilidades": [],
         "carreira": None,
-        "plano": []
+        "plano": [],
+        "pontos":0,
     }
 
     print(f"\nUsuário '{nome}' cadastrado com sucesso! Faça login com '{email}'.\n")
