@@ -9,19 +9,115 @@ planos_estudo = {}
 
 # CARREIRAS
 carreiras = {
-    "Desenvolvedor Backend": ["Python", "APIs", "Git", "Banco de Dados"],
-    "Desenvolvedor Frontend": ["HTML", "CSS", "JavaScript", "Design Responsivo"],
-    "Desenvolvedor Fullstack": ["HTML", "CSS", "JavaScript", "Python", "APIs"],
-    "Cientista de Dados": ["Python", "Estatística", "Machine Learning", "Pandas"],
-    "Analista de Dados": ["Excel", "SQL", "Python", "Dashboard"],
-    "Engenheiro de Dados": ["Python", "SQL", "Pipelines", "Cloud"],
-    "UX/UI Designer": ["Figma", "Design Thinking", "Prototipação"],
-    "QA / Tester": ["Testes Automatizados", "Selenium", "Lógica"],
-    "Cybersegurança": ["Redes", "Pentest", "Criptografia"],
-    "DevOps": ["Cloud", "CI/CD", "Containers"],
-    "Técnico de Informática": ["Hardware", "Manutenção", "Redes"],
-    "Suporte Técnico": ["Atendimento", "Sistemas", "Resolução de Problemas"],
+    "Desenvolvedor Backend": [
+        "Estudar 1h por dia os fundamentos de Python",
+        "Criar um pequeno projeto CRUD usando Python",
+        "Assistir uma videoaula sobre APIs REST",
+        "Ler um artigo sobre boas práticas de Git",
+        "Criar um banco de dados simples e conectar ao Python",
+        "Fazer um projeto de API usando Flask ou FastAPI",
+    ],
+
+    "Desenvolvedor Frontend": [
+        "Praticar 1h de HTML por dia criando pequenas páginas",
+        "Assistir uma videoaula sobre CSS Flexbox e Grid",
+        "Criar um site simples responsivo",
+        "Ler um artigo sobre boas práticas de design responsivo",
+        "Criar um mini projeto usando JavaScript puro",
+        "Reproduzir o layout de um site famoso no Figma",
+    ],
+
+    "Desenvolvedor Fullstack": [
+        "Estudar fundamentos de HTML, CSS e JS por 1h/dia",
+        "Criar um projeto simples Fullstack (frontend + API)",
+        "Ler um artigo sobre autenticação JWT",
+        "Criar backend em Python com Flask/FastAPI",
+        "Criar frontend com HTML/CSS/JS consumindo a API",
+        "Subir o projeto no GitHub",
+    ],
+
+    "Cientista de Dados": [
+        "Estudar 1h por dia de Python focado em análise",
+        "Assistir uma aula introdutória de Machine Learning",
+        "Criar um notebook analisando um dataset do Kaggle",
+        "Ler um artigo sobre estatística descritiva",
+        "Criar gráficos usando Pandas e Matplotlib",
+        "Fazer um mini projeto de previsão (regressão simples)",
+    ],
+
+    "Analista de Dados": [
+        "Estudar SQL por 1h por dia",
+        "Criar dashboards simples no Power BI ou Looker",
+        "Assistir uma videoaula sobre ETL",
+        "Ler um artigo sobre KPIs",
+        "Criar consultas SQL resolvendo problemas reais",
+        "Analisar um dataset público e gerar insights",
+    ],
+
+    "Engenheiro de Dados": [
+        "Estudar fundamentos de Python e SQL diariamente",
+        "Assistir uma aula sobre arquitetura de pipelines",
+        "Criar um pipeline simples com arquivos CSV",
+        "Ler um artigo sobre Data Lakes e Data Warehouses",
+        "Criar um script de ETL automatizado",
+        "Estudar conceitos básicos de Cloud (AWS ou GCP)",
+    ],
+
+    "UX/UI Designer": [
+        "Estudar fundamentos de design no Figma por 1h/dia",
+        "Criar um wireframe de um app simples",
+        "Assistir videoaula de prototipação",
+        "Ler artigo sobre heurísticas de Nielsen",
+        "Criar uma landing page no Figma",
+        "Refazer o design de um app famoso com melhorias",
+    ],
+
+    "QA / Tester": [
+        "Estudar lógica de testes por 1h/dia",
+        "Assistir uma videoaula de testes automatizados",
+        "Criar casos de teste para um site real",
+        "Ler artigo sobre testes funcionais vs unitários",
+        "Instalar o Selenium e testar um site simples",
+        "Criar relatório de bugs fictícios",
+    ],
+
+    "Cybersegurança": [
+        "Estudar fundamentos de redes por 1h/dia",
+        "Assistir videoaula sobre pentest",
+        "Ler um artigo sobre OWASP Top 10",
+        "Testar segurança de uma aplicação simples (simulação)",
+        "Aprender a usar ferramentas como Nmap",
+        "Criar relatório de vulnerabilidades básicas",
+    ],
+
+    "DevOps": [
+        "Estudar fundamentos de Cloud por 1h/dia",
+        "Assistir videoaula de CI/CD",
+        "Criar um pipeline simples no GitHub Actions",
+        "Ler artigo sobre containers com Docker",
+        "Containerizar um pequeno projeto",
+        "Criar deploy básico em cloud free-tier",
+    ],
+
+    "Técnico de Informática": [
+        "Estudar hardware por 1h/dia",
+        "Assistir videoaula de manutenção preventiva",
+        "Abrir um computador e identificar peças (simulado)",
+        "Ler artigo sobre redes básicas",
+        "Resolver problemas simulados de atendimento",
+        "Criar checklist de manutenção",
+    ],
+
+    "Suporte Técnico": [
+        "Estudar atendimento ao cliente 1h/dia",
+        "Assistir videoaula de troubleshooting",
+        "Ler artigo sobre documentação de problemas",
+        "Resolver simulações de problemas comuns",
+        "Estudar sistemas operacionais (Win/Linux)",
+        "Criar um guia de soluções frequentes",
+    ],
 }
+
 
 # MENTORES
 mentores = [
@@ -244,55 +340,55 @@ def menu():
         print("9. Logout")
         print("0. Sair")
 
-        opc = input("Escolha: ").strip()
+        opcao = input("Escolha: ").strip()
 
-        if opc == "1":
+        if opcao == "1":
             usuario_atual = criar_usuario() or usuario_atual
 
-        elif opc == "2":
+        elif opcao == "2":
             usuario_atual = entrar_usuario() or usuario_atual
 
-        elif opc == "3":
+        elif opcao == "3":
             if usuario_atual:
                 criar_perfil(usuario_atual)
             else:
                 print("Faça login primeiro.\n")
 
-        elif opc == "4":
+        elif opcao == "4":
             if usuario_atual:
                 sugerir_carreira(usuario_atual)
             else:
                 print("Faça login primeiro.\n")
 
-        elif opc == "5":
+        elif opcao == "5":
             if usuario_atual:
                 gerar_plano(usuario_atual)
             else:
                 print("Faça login primeiro.\n")
 
-        elif opc == "6":
+        elif opcao == "6":
             if usuario_atual:
                 ver_progresso(usuario_atual)
             else:
                 print("Faça login primeiro.\n")
 
-        elif opc == "7":
+        elif opcao == "7":
             if usuario_atual:
                 conectar_mentor(usuario_atual)
             else:
                 print("Faça login primeiro.\n")
 
-        elif opc == "8":
+        elif opcao == "8":
             cadastrar_mentor()
 
-        elif opc == "9":
+        elif opcao == "9":
             if usuario_atual:
                 print(f"Usuário {usuarios[usuario_atual]['nome']} desconectado.\n")
                 usuario_atual = None
             else:
                 print("Nenhum usuário está logado.\n")
 
-        elif opc == "0":
+        elif opcao == "0":
             print("Saindo...")
             break
 
