@@ -293,19 +293,31 @@ def ver_progresso(email):
     total = len(plano)
     feitos = sum(1 for t in plano if t['feito'])
     barra = "#" * feitos + "-" * (total - feitos)
-    print(f"\nProgresso: [{barra}] {feitos}/{total} concluídas\n")
+
+    pontos = usuarios[email].get('pontos', 0)
+
+    print(f"\n=== PROGRESSO DO SEU PLANO ===")
+    print(f"Progresso: [{barra}] {feitos}/{total} concluídas")
+    print(f"Pontuação total: {pontos} pts\n")
 
     print("✔ Concluídas:")
     for t in plano:
-        if t['feito']:
-            print(f"- {t['tarefa']}")
+        if t["feito"]:
+            print(f"- {t['tarefa']} (+{t['pontos']} pts)")
 
     print("\n❌ Pendentes:")
     for t in plano:
-        if not t['feito']:
-            print(f"- {t['tarefa']}")
+        if not t["feito"]:
+            print(f"- {t['tarefa']} (+{t['pontos']} pts)")
+
     print("")
 
+    # MENSAGEM 100 PONTOS
+    if pontos >= 100:
+        print("""🏆 PARABÉNS, VOCÊ CHEGOU A 100 PONTOS! 🏆
+        Você concluiu uma trilha inteira de evolução!
+        Continue desbloqueando tarefas e aprimorando sua carreira. 🚀
+        A LevelUp está acompanhando sua jornada. 💙\n""")
 
 def conectar_mentor(email):
     carreira = usuarios[email]['carreira']
